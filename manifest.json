@@ -1,0 +1,41 @@
+{
+    "name": "禅道助手", //名称
+    "version": "1.0", //版本
+    "manifest_version": 2, //manifest 版本
+    "description": "禅道插件助手工具,帮助PM批量添加需求字段:需求名称,需求描述,验收标准", //描述
+    "icons":
+    //图标  
+    {
+        "16": "apple-touch-icon.png",
+        "48": "apple-touch-icon.png",
+        "128": "apple-touch-icon.png"
+    },
+    "browser_action":
+    //定义浏览器动作
+    {
+        "default_icon": "apple-touch-icon.png",
+        "default_title": "请在禅道批量添加需求页面打开",
+        "default_popup": "popup.html"
+    },
+    //注入脚本
+     "content_scripts": [{
+            "matches": [
+                "<all_urls>"
+            ],
+            // 多个JS按顺序注入
+            "js": [
+                "jq/jquery.min.js"
+            ],
+            // 代码注入的时间，可选值： "document_start", "document_end", or "document_idle"，最后一个表示页面空闲时，默认document_idle
+            "run_at": "document_end"
+        }
+    ],
+    "permissions": [ //权限
+        "activeTab",
+        "tabs",
+        "storage", // 插件本地存储
+        "http://*/*", // 可以通过executeScript或者insertCSS访问的网站
+        "https://*/*", // 可以通过executeScript或者insertCSS访问的网站
+        "file:///Users*"
+    ]
+}
